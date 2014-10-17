@@ -1,0 +1,45 @@
+Ariana Giorgi
+ang2144
+AI Project 2 - Part 2, Statistics
+10/15/14
+
+1. Number of nodes generated
+-calculated at each move made and when evaluating heuristic
+-stored in variable 'node_count'
+At depth = 2:
+Minimax: 6215 nodes
+Alpha-beta: 1692 nodes
+The alpha-beta pruning process cut the number of nodes searched by nearly 70%
+
+2. Number of nodes duplicated
+-calculated by comparing the current state of the board to previous board states after the moves are excuted and when evaluating heuristic
+-boards are 'stored' based off of a similar input structure from the 'display' function in board.py
+-number of duplicates stored in variable 'duplicates'
+At depth = 2:
+Minimax: 1907 nodes are duplicates (roughly 30% of all nodes)
+Alpha-beta: 854 nodes are duplicates (roughly 50% of all nodes)
+I was expecting the percentages of total nodes to be similar, but perhaps the alpha-beta pruning has more duplicates because it has already weeded out a number of nodes from the pruning process.
+
+3. Average branching factor of search tree
+-branching factor calculated after each 'board.get_legal_moves' action then summed for that total search
+-averaged after each branching factor is calculated
+-store in variables 'branch_count', 'branch_list', and 'avg'
+At depth = 2:
+Minimax: 162 branches
+Alpha-beta: 166 branches
+This is what I expected - that both the minimax and alpha-beta pruning process would create the same kind of branching scheme, just the alpha-beta searches fewer of the nodes.
+
+4. Runtime of the algorithm
+-calculated in get_move around the function call using the timeit.default_timer() function
+-time printed out as 'end_time-start_time'
+Time ranges of the functions (the first search of the relatively blank board took the shortest amount of time then somewhere in the middle of the process, which is the most pivotal, took the most amount of time to calculate the move)
+At depth = 2:
+Minimax: [0.028, 2.585] seconds
+Alpha-beta: [0.012, 1.711] seconds
+depth = 3:
+M: [0.150, 10.72] seconds
+AB: [0.078, 4.601] seconds
+depth = 4:
+M: [0.662, 72.06] seconds
+AB: [0.312, 6.750] seconds
+You can see from these stats that at each depth, the amount of time it takes minimax to search through all the possible nodes exponential increases as you increase depth. However, because alpha-beta pruns in the process and searches less nodes overall, the time increase is still exponential, but drastically smaller in scale.
